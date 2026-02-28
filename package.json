@@ -1,0 +1,16 @@
+{
+  "name": "siproper-pusaka-realtime",
+  "private": true,
+  "version": "0.1.0",
+  "description": "SIPROPER PUSAKA realtime multi-user MVP (Express + React)",
+  "scripts": {
+    "dev": "npx concurrently -n server,client -c auto \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client && node server/scripts/copy-client-build.js",
+    "start": "npm run start --prefix server",
+    "setup:win": "node \"%npm_execpath%\" install --prefix server && node \"%npm_execpath%\" install --prefix client",
+    "setup:nix": "node \"$npm_execpath\" install --prefix server && node \"$npm_execpath\" install --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

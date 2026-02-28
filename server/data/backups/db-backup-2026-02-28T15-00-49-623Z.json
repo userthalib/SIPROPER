@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "created_at": "2026-02-28T00:00:00.000Z",
+    "last_import_at": null
+  },
+  "users": [
+    {
+      "id": "ec2f5b6e-1597-409d-8afa-da2e87c23d0b",
+      "username": "admin",
+      "password_hash": "$2a$10$qho2ajIajKNY/oxJVvJN7.haf7eNwOz9MO8gjJsxpnpjzcqPLqJsO",
+      "role": "admin",
+      "created_at": "2026-02-28T15:00:49.623Z"
+    }
+  ],
+  "records": []
+}
