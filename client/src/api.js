@@ -11,7 +11,14 @@ async function request(path, { method = 'GET', body, token } = {}) {
   const headers = { 'Content-Type': 'application/json' }
   const tok = token ?? getToken()
   if (tok) headers['Authorization'] = `Bearer ${tok}`
-  const res = await fetch(path, {
+  const API_BASE = import.meta.env.VITE_API_BASE || "";
+
+function withBase(path) {
+  if (!API_BASE) return path;
+  return new URL(path, API_BASE).toString();
+}
+
+const res = await fetch(withBase(path), {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined
@@ -54,7 +61,7 @@ export async function importExcel(file) {
   const tok = getToken()
   const form = new FormData()
   form.append('file', file)
-  const res = await fetch('/api/import/excel', {
+  const res = await fetch(withBase('/api/import/excel'), {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${tok}`
