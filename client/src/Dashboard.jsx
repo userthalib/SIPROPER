@@ -1,5 +1,6 @@
+// client/src/Dashboard.jsx
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { api, getToken, importExcel } from './api'
+import { api, getToken, importExcel, withBase } from './api'
 import EditModal from './EditModal.jsx'
 import UsersPanel from './UsersPanel.jsx'
 
@@ -171,8 +172,8 @@ export default function Dashboard({ user, socket }) {
     if (masalah) qs.set('masalah', masalah)
 
     const tok = getToken()
-    // Use a fetch download so token can be attached
-    fetch('/api/export/csv?' + qs.toString(), {
+    // IMPORTANT: use withBase so this hits Render backend, not Vercel
+    fetch(withBase('/api/export/csv?' + qs.toString()), {
       headers: { Authorization: `Bearer ${tok}` }
     })
       .then((r) => {
@@ -269,7 +270,6 @@ export default function Dashboard({ user, socket }) {
             ) : null}
           </div>
         </div>
-
 
         {err ? <div className="hint" style={{ color: '#b91c1c' }}>{err}</div> : null}
       </div>
